@@ -23,9 +23,11 @@ jobs:
       - name: Check image
         run: docker images
         
-      - name: push to JFrog
-        run: docker push alisaeed.jfrog.io/test-docker/test:try1
+      - name: Tag the image JFrog
+        run: docker tag latest alisaeed.jfrog.io/test-docker/test:latest
         
+      - name: Push to JFrog
+        run: docker push alisaeed.jfrog.io/test-docker/test>:latest
       
       - name: Check the running containers
         run: docker ps
