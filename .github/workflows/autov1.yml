@@ -12,16 +12,16 @@ jobs:
         uses: actions/checkout@v1
         
       - name: List Repo files
-      - run: ls -l
+        run: ls -l
         
       - name: Check Docker version
-      - run: docker -v
+        run: docker -v
       
       - name: Build Docker image
-      - run: docker build -t test
+        run: docker build -t test
       
       - name: Check image
-      - run: docker images
+        run: docker images
 
       - name: Deploy to my EC2 instance
         uses: easingthemes/ssh-deploy@v2.1.5
