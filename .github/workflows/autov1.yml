@@ -23,8 +23,9 @@ jobs:
       - name: Check image
         run: docker images
         
-      - name: Run the test image
-        run: docker run -d -p 8000:8000 test
+      - name: push to JFrog
+        run: docker push alisaeed.jfrog.io/test-docker/test:try1
+        
       
       - name: Check the running containers
         run: docker ps
