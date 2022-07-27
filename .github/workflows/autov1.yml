@@ -23,11 +23,19 @@ jobs:
       - name: Check image
         run: docker images
         
-      - name: Tag the image JFrog
-        run: docker tag test alisaeed.jfrog.io/test-docker/test
-        
-      - name: Push to JFrog
-        run: docker push alisaeed.jfrog.io/test-docker/test
+      - name: Configuring artifactory
+        uses: "jfrog/setup-jfrog-cli@v2"
+      - name: Pushing artifactory
+    env:
+        with: 
+            APIKEY: ${{secrets.JF_APIKEY}}
+            
+        run: |
+          jf c add --url https://artifactory.xxxxxx.ae:443 --user alisaeed --password "$APIKEY"
+          jf rt ping
+          cd workspace
+          sudo touch newfile.txt
+          jf rt u newfile.txt github_actions_testing
       
       - name: Check the running containers
         run: docker ps
