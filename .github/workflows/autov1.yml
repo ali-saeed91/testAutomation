@@ -18,7 +18,7 @@ jobs:
         run: docker -v
       
       - name: Build Docker image
-        run: docker build -t test
+        run: docker build -t test .
       
       - name: Check image
         run: docker images
