@@ -25,4 +25,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           ls
-          ls -l
+          cd ..
+          ls
