@@ -10,6 +10,14 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v1
+      - name: List Repo files
+        run: ls -l
+      - name: Check Docker version
+      - run: docker -v
+      - name: Build Docker image
+      - run: docker build -t test
+      - name: Check image
+      - run: docker images
 
       - name: Deploy to my EC2 instance
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -20,10 +28,3 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: "/home/ubuntu/autov1"
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          ls
-          cd ..
-          ls
