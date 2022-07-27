@@ -10,12 +10,16 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v1
+        
       - name: List Repo files
         run: ls -l
+        
       - name: Check Docker version
       - run: docker -v
+      
       - name: Build Docker image
       - run: docker build -t test
+      
       - name: Check image
       - run: docker images
 
