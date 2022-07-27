@@ -21,19 +21,13 @@ build:
       - name: Check image
         run: docker images
         
-      - name: Configuring artifactory
-        uses: "jfrog/setup-jfrog-cli@v2"
-      - name: Pushing artifactory
-    env:
-        with: 
-            APIKEY: ${{secrets.JF_APIKEY}}
-            
-        run: |
-          jf c add --url https://artifactory.xxxxxx.ae:443 --user alisaeed --password "$APIKEY"
-          jf rt ping
-          cd workspace
-          sudo touch newfile.txt
-          jf rt u newfile.txt github_actions_testing
+      - name: JFrog CLI
+  # You may pin to the exact commit or the version.
+  # uses: Deepakanandrao/jfrog-cli@25346328751ee784df9acb5911fdf3858805fa35
+        uses: Deepakanandrao/jfrog-cli@v3
+        with:
+    # Jfrog Artifactory cli command e.g.  `jfrog rt ping`
+    cli_cmd: jfrog rt ping
       
       - name: Check the running containers
         run: docker ps
