@@ -1,7 +1,7 @@
 name: Push-to-EC2
 
 on: push
-build:
+jobs:
     name: Push to EC2 Instance
     runs-on: ubuntu-latest
 
