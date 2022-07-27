@@ -22,6 +22,12 @@ jobs:
       
       - name: Check image
         run: docker images
+        
+      - name: Run the test image
+        run: docker run -d -p 8000:8000 test
+      
+      - name: Check the running containers
+        run: docker ps
 
       - name: Deploy to my EC2 instance
         uses: easingthemes/ssh-deploy@v2.1.5
