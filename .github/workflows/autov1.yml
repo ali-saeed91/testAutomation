@@ -13,10 +13,6 @@ jobs:
 
       - name: Deploy to my EC2 instance
         uses: easingthemes/ssh-deploy@v2.1.5
-        # Runs a single command using the runners shell
-      - name: list items
-        run: ls
-        
         env:
         
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
@@ -29,3 +25,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           ls
+          ls -l
