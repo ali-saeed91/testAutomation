@@ -2,7 +2,8 @@ name: Push-to-EC2
 
 on: push
 jobs:
-    name: Push to EC2 Instance
+  deploy:
+    name: Build JFrog Docker Image
     runs-on: ubuntu-latest
 
     steps:
