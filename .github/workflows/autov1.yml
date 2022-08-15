@@ -18,7 +18,7 @@ jobs:
         
         - name: Build Docker image
           run: docker build -t test .
-        
+          
         - name: Check image
           run: docker images
       
@@ -26,13 +26,13 @@ jobs:
       #   run: jf config add $ARTIFACTORY_SERVER_ID --artifactory-url=$ARTIFACTORY_URL --basic-auth-only=true --user=$USER --password=$PASSWORD --interactive=false
         # docker tag <image name> ${server-name}.jfrog.io/{repo-name}/<image name>
         # docker push ${server-name}.jfrog.io/{repo-name}/<image name>
-          - name: JFrog CLI
-          - uses: jfrog/setup-jfrog-cli@v1
-            env:
-              JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
-          - run: |
-              # Ping the server
-              jfrog rt ping 
+        - name: JFrog CLI
+        - uses: jfrog/setup-jfrog-cli@v1
+          env:
+            JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
+        - run: |
+            # Ping the server
+            jfrog rt ping 
         
         
       
