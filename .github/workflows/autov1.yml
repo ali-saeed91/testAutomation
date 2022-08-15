@@ -3,36 +3,36 @@ name: Push-to-EC2
 on: push
 jobs:
   deploy:
-    name: Build JFrog Docker Image
-    runs-on: ubuntu-latest
+      name: Build JFrog Docker Image
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v1
+      steps:
+        - name: Checkout the code
+          uses: actions/checkout@v1
+          
+        - name: List Repo files
+          run: ls -l
+          
+        - name: Check Docker version
+          run: docker -v
         
-      - name: List Repo files
-        run: ls -l
+        - name: Build Docker image
+          run: docker build -t test .
         
-      - name: Check Docker version
-        run: docker -v
-      
-      - name: Build Docker image
-        run: docker build -t test .
-      
-      - name: Check image
-        run: docker images
+        - name: Check image
+          run: docker images
       
       # - name: Login to JFROG CLI
       #   run: jf config add $ARTIFACTORY_SERVER_ID --artifactory-url=$ARTIFACTORY_URL --basic-auth-only=true --user=$USER --password=$PASSWORD --interactive=false
         # docker tag <image name> ${server-name}.jfrog.io/{repo-name}/<image name>
         # docker push ${server-name}.jfrog.io/{repo-name}/<image name>
-      - name: JFrog CLI
-      - uses: jfrog/setup-jfrog-cli@v1
-        env:
-          JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
-      - run: |
-          # Ping the server
-          jfrog rt ping
+          - name: JFrog CLI
+          - uses: jfrog/setup-jfrog-cli@v1
+            env:
+              JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
+          - run: |
+              # Ping the server
+              jfrog rt ping 
         
         
       
