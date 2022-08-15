@@ -20,24 +20,30 @@ jobs:
       
       - name: Check image
         run: docker images
-        
-      - name: JFrog CLI
-  # You may pin to the exact commit or the version.
-  # uses: Deepakanandrao/jfrog-cli@25346328751ee784df9acb5911fdf3858805fa35
-        uses: Deepakanandrao/jfrog-cli@v3
-        with:
-    # Jfrog Artifactory cli command e.g.  `jfrog rt ping`
-    cli_cmd: jfrog rt ping
       
-      - name: Check the running containers
-        run: docker ps
-
-      - name: Deploy to my EC2 instance
-        uses: easingthemes/ssh-deploy@v2.1.5
+      # - name: Login to JFROG CLI
+      #   run: jf config add $ARTIFACTORY_SERVER_ID --artifactory-url=$ARTIFACTORY_URL --basic-auth-only=true --user=$USER --password=$PASSWORD --interactive=false
+        # docker tag <image name> ${server-name}.jfrog.io/{repo-name}/<image name>
+        # docker push ${server-name}.jfrog.io/{repo-name}/<image name>
+      - name: JFrog CLI
+      - uses: jfrog/setup-jfrog-cli@v1
         env:
+          JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
+      - run: |
+          # Ping the server
+          jfrog rt ping
         
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          SOURCE: "./"
-          REMOTE_HOST: ${{ secrets.HOST_DNS }}
-          REMOTE_USER: ${{ secrets.USERNAME }}
-          TARGET: "/home/ubuntu/autov1"
+        
+      
+      # - name: Check the running containers
+      #   run: docker ps
+
+      # - name: Deploy to my EC2 instance
+      #   uses: easingthemes/ssh-deploy@v2.1.5
+      #   env:
+        
+      #     SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+      #     SOURCE: "./"
+      #     REMOTE_HOST: ${{ secrets.HOST_DNS }}
+      #     REMOTE_USER: ${{ secrets.USERNAME }}
+      #     TARGET: "/home/ubuntu/autov1"
