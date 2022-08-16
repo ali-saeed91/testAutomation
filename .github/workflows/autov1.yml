@@ -32,7 +32,7 @@ jobs:
         - run: |
             # Ping the server
             jfrog rt ping
-            docker login alisaeed.jfrog.io --username=$DOCKER_USER --password=$DOCKER_PASS
+            sudo docker login alisaeed.jfrog.io --username=$DOCKER_USER --password=$DOCKER_PASS
             docker tag test:latest alisaeed.jfrog.io/test:latest
             docker push alisaeed.jfrog.io/test:latest
         
