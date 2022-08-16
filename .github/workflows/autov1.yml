@@ -27,10 +27,12 @@ jobs:
         - uses: jfrog/setup-jfrog-cli@v1
           env:
             JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
+            DOCKER_USER: ${{ secrets.docker_user }}
+            DOCKER_PASS: ${{ secrets.docker_pass }}
         - run: |
             # Ping the server
             jfrog rt ping
-            docker login alisaeed.jfrog.io
+            docker login alisaeed.jfrog.io --username=$DOCKER_USER --password=$DOCKER_PASS
             docker tag test:latest alisaeed.jfrog.io/test:latest
             docker push alisaeed.jfrog.io/test:latest
         
