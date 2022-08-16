@@ -41,7 +41,7 @@ jobs:
             docker build -t test .
             docker tag test alisaeed.jfrog.io/test:latest
             docker images
-            docker push alisaeed.jfrog.io/test-docker/test:latest
+            docker push alisaeed.jfrog.io/test:latest
         
         
       
