@@ -12,26 +12,25 @@ jobs:
           
         - name: List Repo files
           run: ls -l
-          
-        - name: Check Docker version
-          run: docker -v
         
         - name: Build Docker image
           run: docker build -t test .
 
-        - name: Check image
+        - name: Check images
           run: docker images
       
       # - name: Login to JFROG CLI
       #   run: jf config add $ARTIFACTORY_SERVER_ID --artifactory-url=$ARTIFACTORY_URL --basic-auth-only=true --user=$USER --password=$PASSWORD --interactive=false
         # docker tag <image name> ${server-name}.jfrog.io/{repo-name}/<image name>
         # docker push ${server-name}.jfrog.io/{repo-name}/<image name>
+        # Testing
         - uses: jfrog/setup-jfrog-cli@v1
           env:
             JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
         - run: |
             # Ping the server
             jfrog rt ping
+            docker login alisaeed.jfrog.io
             docker tag test:latest alisaeed.jfrog.io/test:latest
             docker push alisaeed.jfrog.io/test:latest
         
