@@ -47,9 +47,9 @@ jobs:
             # echo "$DOCKER_PASSWORD" | docker login alisaeed.jfrog.io --username engineer.ali91@live.com --password-stdin
             # docker login alisaeed.jfrog.io && echo "$DOCKER_USERNAME" && echo "$DOCKER_PASSWORD"
             docker build -t test .
-            docker tag test alisaeed.jfrog.io/test-docker/test:latest
+            docker tag test alisaeed.jfrog.io/node-test-docker/test:latest
             docker images
-            docker push alisaeed.jfrog.io/test-docker/test:latest
+            docker push alisaeed.jfrog.io/node-test-docker/test:latest
         
         
       
