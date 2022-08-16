@@ -32,14 +32,15 @@ jobs:
             JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
             DOCKER_USERNAME: ${{ secrets.docker_user }}
             DOCKER_PASSWORD: ${{ secrets.docker_pass }}
-          run: |
+        - run: |
             # Ping the server
             jfrog rt ping
             # echo $DOCKER_PASSWORD >my_password.txt
             # cat my_password.txt
             # cat ~/my_password.txt | docker login --username engineer.ali91@live.com --password-stdin
             # docker login alisaeed.jfrog.io -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            echo "$DOCKER_PASSWORD" | docker login alisaeed.jfrog.io --username engineer.ali91@live.com --password-stdin
+            # echo "$DOCKER_PASSWORD" | docker login alisaeed.jfrog.io --username engineer.ali91@live.com --password-stdin
+            docker login alisaeed.jfrog.io && echo "$DOCKER_USERNAME" && echo "$DOCKER_PASSWORD"
             docker build -t test .
             docker tag test alisaeed.jfrog.io/test-docker/test:latest
             docker images
