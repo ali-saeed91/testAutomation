@@ -38,8 +38,8 @@ jobs:
             # echo $DOCKER_PASSWORD >my_password.txt
             # cat my_password.txt
             # cat ~/my_password.txt | docker login --username engineer.ali91@live.com --password-stdin
-            docker build -t test:latest
-            docker tag test:latest alisaeed.jfrog.io/test:latest
+            docker build -t test .
+            docker tag test alisaeed.jfrog.io/test:latest
             docker push alisaeed.jfrog.io/test-docker/test:latest
         
         
