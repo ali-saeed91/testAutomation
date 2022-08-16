@@ -32,7 +32,7 @@ jobs:
             JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
             DOCKER_USERNAME: ${{ secrets.docker_user }}
             DOCKER_PASSWORD: ${{ secrets.docker_pass }}
-        - run: |
+          run: |
             # Ping the server
             jfrog rt ping
             # echo $DOCKER_PASSWORD >my_password.txt
